@@ -7,7 +7,9 @@ var bodyParser = require('body-parser');
 
 
 //Connect to the eva MonoDB
-mongoose.connect('mongodb://localhost:27017/eva');
+var serverHost="127.0.0.1";
+var serverPort="27017/eva";
+mongoose.connect( 'mongodb://'+serverHost+':'+serverPort);
 
 // Create our Express application
 var app = express();
@@ -18,8 +20,8 @@ app.use(bodyParser.urlencoded({
 }))
 
 // Use environment defined port or 3000
-var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000;
-var ip   =  process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port =  process.env.PORT || 3000;
+var ip   =  "127.0.0.1";
 
 // Create our Express router
 var router = express.Router();
